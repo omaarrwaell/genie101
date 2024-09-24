@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genie101/constants/app_colors.dart';
-import 'package:genie101/views/home_view.dart';
+import 'package:genie101/views/home/home_view.dart';
 import 'package:genie101/views/profile_view.dart';
 import 'package:genie101/views/scene_view.dart';
 import 'package:get/get.dart';
@@ -11,11 +11,12 @@ import '../controllers/navigation_controller.dart';
 class NavigationView extends StatelessWidget {
   NavigationView({super.key});
   final navigationController = Get.put(NavigationController());
-  final screens = const [HomeView(), SceneView(), ProfileView()];
+  final screens = [HomeView(), const SceneView(), const ProfileView()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBody: true,
         backgroundColor: const Color.fromARGB(255, 223, 234, 243),
         body: Obx(
           () => IndexedStack(
