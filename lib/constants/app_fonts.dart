@@ -6,4 +6,6 @@ class AppFonts {
       GoogleFonts.poppins(color: Colors.white, fontSize: 35);
   static final TextStyle normalFont =
       GoogleFonts.poppins(color: Colors.white, fontSize: 16);
+  static final TextStyle largeFont =
+      GoogleFonts.poppins(color: Colors.white, fontSize: 18);
 }

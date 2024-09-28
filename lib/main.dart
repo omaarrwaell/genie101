@@ -1,11 +1,15 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:genie101/views/navigation_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const MyApp());
+// void main() => runApp(
+//       DevicePreview(
+//         builder: (context) => MyApp(), // Wrap your app
+//       ),
+//     );
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

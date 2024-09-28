@@ -31,7 +31,7 @@ class NavigationView extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 onTap: (index) => navigationController.changeIndex(index),
                 currentIndex: navigationController.selectedIndex(),
-                backgroundColor: AppColors.defaultBgColor,
+                backgroundColor: AppColors.darkBgColor,
                 selectedItemColor: const Color.fromARGB(255, 141, 138, 241),
                 unselectedItemColor: const Color.fromARGB(255, 124, 114, 114),
                 selectedColorOpacity: 1,
