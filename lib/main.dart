@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:genie101/views/navigation_view.dart';
+import 'package:genie101/views/navigation_view/navigation_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:genie101/constants/app_colors.dart';
 import 'package:genie101/constants/app_fonts.dart';
 
 class SceneWidget extends StatelessWidget {
@@ -26,7 +27,7 @@ class SceneWidget extends StatelessWidget {
               width: 80,
               decoration: BoxDecoration(
                   color: bgColor, borderRadius: BorderRadius.circular(40)),
-              child: bgColor == Colors.grey[800]!
+              child: bgColor == AppColors.colorTexture
                   ? sceneIcon
                   : Container(
                       margin: const EdgeInsets.all(2),

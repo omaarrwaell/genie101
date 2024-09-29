@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:genie101/constants/app_fonts.dart';
 import 'package:genie101/views/home/home_view_controller.dart';
+import 'package:genie101/views/scenes_view/scenes_view.dart';
 import 'package:genie101/widgets/home_widgets/scene_container.dart';
 import 'package:genie101/widgets/home_widgets/scene_trigger.dart';
 import 'package:genie101/widgets/home_widgets/scene_widget.dart';
@@ -62,7 +63,7 @@ class HomeView extends StatelessWidget {
                         bgColor: _homeViewController.selectedIcon() ==
                                 _homeViewController.icons[index]
                             ? Colors.white
-                            : Colors.grey[800]!,
+                            : AppColors.colorTexture,
                         sceneFunction: () {
                           _homeViewController
                               .selectedIcon(_homeViewController.icons[index]);
@@ -82,85 +83,90 @@ class HomeView extends StatelessWidget {
                     physics: const ScrollPhysics(),
                     padding: const EdgeInsets.all(30),
                     itemBuilder: (context, index) {
-                      return SceneContainer(
-                        screenWidth: screenWidth,
-                        bgImage: _homeViewController.roomImages[index],
-                        containerChild: SizedBox(
-                          height: screenHeigth * 0.15,
-                          width: screenWidth,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    _homeViewController.rooms[index],
-                                    style: AppFonts.largeFont,
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text.rich(TextSpan(
-                                      text: "2",
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 17,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500),
-                                      children: [
-                                        TextSpan(
-                                            text: "/5 is ",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 17,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w200)),
-                                        TextSpan(
-                                            text: "on",
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 17,
-                                                color: Colors.green,
-                                                fontWeight: FontWeight.w400))
-                                      ]))
-                                ],
-                              ),
-                              SizedBox(
-                                height: screenHeigth * 0.084,
-                                width: screenWidth,
-                                child: ListView.builder(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  itemCount: 5,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Row(
-                                      children: [
-                                        Obx(() => SceneTrigger(
-                                            sceneIcon: _homeViewController
-                                                .triggerIcons[index],
-                                            bgColor: _homeViewController
-                                                        .selectedTriggerIcon() ==
-                                                    _homeViewController
-                                                        .triggerIcons[index]
-                                                ? Colors.white
-                                                : Colors.transparent,
-                                            sceneFunction: () {
-                                              _homeViewController
-                                                  .selectedTriggerIcon(
-                                                      _homeViewController
-                                                          .triggerIcons[index]);
-                                            })),
-                                        const SizedBox(
-                                          width: 10,
-                                        )
-                                      ],
-                                    );
-                                  },
+                      return InkWell(
+                        onTap: () => Get.to(() => ScenesView(),
+                            transition: Transition.rightToLeft),
+                        child: SceneContainer(
+                          screenWidth: screenWidth,
+                          bgImage: _homeViewController.roomImages[index],
+                          containerChild: SizedBox(
+                            height: screenHeigth * 0.15,
+                            width: screenWidth,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const SizedBox(
+                                  height: 10,
                                 ),
-                              )
-                            ],
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      _homeViewController.rooms[index],
+                                      style: AppFonts.largeFont,
+                                    ),
+                                    const SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text.rich(TextSpan(
+                                        text: "2",
+                                        style: GoogleFonts.poppins(
+                                            fontSize: 17,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
+                                        children: [
+                                          TextSpan(
+                                              text: "/5 is ",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 17,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w200)),
+                                          TextSpan(
+                                              text: "on",
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 17,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.w400))
+                                        ]))
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: screenHeigth * 0.084,
+                                  width: screenWidth,
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    itemCount: 5,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, index) {
+                                      return Row(
+                                        children: [
+                                          Obx(() => SceneTrigger(
+                                              sceneIcon: _homeViewController
+                                                  .triggerIcons[index],
+                                              bgColor: _homeViewController
+                                                          .selectedTriggerIcon() ==
+                                                      _homeViewController
+                                                          .triggerIcons[index]
+                                                  ? Colors.white
+                                                  : Colors.transparent,
+                                              sceneFunction: () {
+                                                _homeViewController
+                                                    .selectedTriggerIcon(
+                                                        _homeViewController
+                                                                .triggerIcons[
+                                                            index]);
+                                              })),
+                                          const SizedBox(
+                                            width: 10,
+                                          )
+                                        ],
+                                      );
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );

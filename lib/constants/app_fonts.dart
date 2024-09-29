@@ -8,4 +8,6 @@ class AppFonts {
       GoogleFonts.poppins(color: Colors.white, fontSize: 16);
   static final TextStyle largeFont =
       GoogleFonts.poppins(color: Colors.white, fontSize: 18);
+  static final TextStyle titleFont =
+      GoogleFonts.poppins(color: Colors.white, fontSize: 23);
 }

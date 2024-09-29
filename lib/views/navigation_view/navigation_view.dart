@@ -6,7 +6,7 @@ import 'package:genie101/views/scene_view.dart';
 import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import '../controllers/navigation_controller.dart';
+import 'navigation_controller.dart';
 
 class NavigationView extends StatelessWidget {
   NavigationView({super.key});
