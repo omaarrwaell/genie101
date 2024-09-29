@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class HomeViewController extends GetxController {
   Rx<Icon> selectedIcon = const Icon(Icons.abc).obs;
@@ -7,27 +8,27 @@ class HomeViewController extends GetxController {
   List<String> names = ["Morning", "Night", "Music", "Movie", "Leaving"];
   List<Icon> icons = const [
     Icon(
-      Icons.wb_sunny_rounded,
+      Symbols.sunny,
       size: 50,
       color: Colors.amber,
     ),
     Icon(
-      Icons.nights_stay_rounded,
+      Symbols.nights_stay,
       color: Colors.blueGrey,
       size: 50,
     ),
     Icon(
-      Icons.music_note_sharp,
+      Symbols.play_music,
       color: Colors.redAccent,
       size: 50,
     ),
     Icon(
-      Icons.movie_filter_sharp,
+      Icons.movie_outlined,
       color: Colors.deepPurple,
       size: 50,
     ),
     Icon(
-      Icons.exit_to_app_sharp,
+      Symbols.key,
       color: Colors.teal,
       size: 50,
     )
