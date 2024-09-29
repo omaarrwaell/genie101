@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:genie101/constants/app_fonts.dart';
 import 'package:genie101/views/home/home_view_controller.dart';
@@ -33,11 +31,15 @@ class HomeView extends StatelessWidget {
                 "Morning !",
                 style: AppFonts.defaultFont,
               ),
-              SizedBox(
-                child: Icon(
-                  Icons.fiber_smart_record_sharp,
-                  size: 100,
-                  color: AppColors.colorTexture,
+              const SizedBox(
+                width: 80,
+              ),
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 0),
+                  child: Image.asset(
+                    "assets/images/genie-Photoroom.png",
+                  ),
                 ),
               )
             ],
