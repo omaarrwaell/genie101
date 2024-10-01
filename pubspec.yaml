@@ -23,6 +23,7 @@ dependencies:
   google_fonts: ^6.2.1
   device_preview: ^1.2.0
   material_symbols_icons: ^4.2785.1
+  interactive_slider: ^0.4.0
 
 
 dev_dependencies:

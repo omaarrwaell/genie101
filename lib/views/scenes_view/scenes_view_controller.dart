@@ -3,38 +3,28 @@ import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:get/get.dart';
 
 class ScenesViewController extends GetxController {
+  RxInt currentIndex = 0.obs;
+  RxInt acTemp = 19.obs;
   List<String> utilities = [
     'Fan',
-    'Television',
+    "Conditioner",
     "Speakers",
     "Light",
-    "Conditioner"
+    'Television',
   ];
-  List<Icon> utilityIcons = const [
-    Icon(
-      Symbols.mode_fan,
-      size: 35,
-      color: Colors.white,
-    ),
-    Icon(
-      Symbols.tv,
-      size: 35,
-      color: Colors.white,
-    ),
-    Icon(
-      Symbols.speaker,
-      size: 35,
-      color: Colors.white,
-    ),
-    Icon(
-      Symbols.lightbulb,
-      size: 35,
-      color: Colors.white,
-    ),
-    Icon(
-      Symbols.ac_unit,
-      size: 35,
-      color: Colors.white,
-    ),
+  List<IconData> utilityIcons = const [
+    Symbols.mode_fan,
+    Symbols.ac_unit,
+    Symbols.tv,
+    Symbols.speaker,
+    Symbols.lightbulb,
   ];
+
+  void changeIndex(int index) {
+    currentIndex(index);
+  }
+
+  void monitorAc(int temp) {
+    acTemp(temp);
+  }
 }

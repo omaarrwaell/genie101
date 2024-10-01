@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:genie101/constants/app_fonts.dart';
 import 'package:genie101/views/scenes_view/scenes_view_controller.dart';
+import 'package:genie101/widgets/scene_widgets/conditioner_body.dart';
 import 'package:genie101/widgets/scene_widgets/utility_card.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../constants/app_colors.dart';
+import '../../widgets/scene_widgets/fan_body.dart';
 
 class ScenesView extends StatelessWidget {
   double? screenHeigth;
   double? screenWidth;
+  final _utilitiesBody = [FanBody(), ConditionerBody()];
   final ScenesViewController _scenesViewController =
       Get.put(ScenesViewController());
   ScenesView({super.key});
@@ -49,7 +50,7 @@ class ScenesView extends StatelessWidget {
             margin: const EdgeInsets.only(top: 20),
             height: screenHeigth! < 800
                 ? screenHeigth! * 0.25
-                : screenHeigth! * 0.2,
+                : screenHeigth! * 0.15,
             width: screenWidth,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -60,11 +61,23 @@ class ScenesView extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    UtilityCard(
-                        utilityName: _scenesViewController.utilities[index],
-                        utilityIcon: _scenesViewController.utilityIcons[index],
-                        bgColor: AppColors.colorTexture,
-                        utilityFunction: () {}),
+                    Obx(
+                      () => UtilityCard(
+                          utilityName: _scenesViewController.utilities[index],
+                          utilityIcon: Icon(
+                              _scenesViewController.utilityIcons[index],
+                              size: 35,
+                              color:
+                                  index == _scenesViewController.currentIndex()
+                                      ? Colors.black
+                                      : Colors.white),
+                          bgColor: index == _scenesViewController.currentIndex()
+                              ? Colors.white
+                              : AppColors.colorTexture,
+                          utilityFunction: () {
+                            _scenesViewController.currentIndex(index);
+                          }),
+                    ),
                   ],
                 );
               },
@@ -77,107 +90,23 @@ class ScenesView extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(40),
                     topRight: Radius.circular(40))),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ShaderMask(
-                  blendMode: BlendMode.srcATop,
-                  child: Image.asset(
-                    "assets/images/fan.png",
-                    height: screenHeigth! * 0.4,
-                  ),
-                  shaderCallback: (bounds) {
-                    return const LinearGradient(colors: [
-                      Colors.orange,
-                      Colors.teal,
-                      Colors.orange,
-                    ]).createShader(bounds);
+            child: Obx(() => AnimatedSwitcher(
+                  transitionBuilder: (child, animation) {
+                    return SlideTransition(
+                      position: Tween<Offset>(
+                        begin: const Offset(1.5, 0.0),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    );
                   },
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      onTap: () {},
-                      child: Container(
-                          height: 50,
-                          width: screenWidth! * 0.25,
-                          decoration: BoxDecoration(
-                              color: AppColors.colorTexture,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                            "Low",
-                            style: AppFonts.normalFont,
-                          ))),
-                    ),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                          height: 50,
-                          width: screenWidth! * 0.25,
-                          decoration: BoxDecoration(
-                              color: AppColors.colorTexture,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                            "Medium",
-                            style: AppFonts.normalFont,
-                          ))),
-                    ),
-                    InkWell(
-                      splashColor: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                          height: 50,
-                          width: screenWidth! * 0.25,
-                          decoration: BoxDecoration(
-                              color: AppColors.colorTexture,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                            "High",
-                            style: AppFonts.normalFont,
-                          ))),
-                    ),
-                  ],
-                ),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                      height: 50,
-                      width: screenWidth! * 0.88,
-                      decoration: BoxDecoration(
-                          color: AppColors.colorTexture,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            CupertinoIcons.power,
-                            color: Colors.red,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Turn Off",
-                            style: GoogleFonts.poppins(
-                                letterSpacing: 1,
-                                wordSpacing: 1,
-                                color: Colors.red,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      )),
-                ),
-              ],
-            ),
+                  duration: const Duration(milliseconds: 300),
+                  child: IndexedStack(
+                    key: ValueKey<int>(_scenesViewController.currentIndex()),
+                    index: _scenesViewController.currentIndex(),
+                    children: _utilitiesBody,
+                  ),
+                )),
           ))
         ],
       ),

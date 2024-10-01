@@ -30,7 +30,10 @@ class UtilityCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     utilityIcon,
-                    Text(utilityName, style: AppFonts.normalFont),
+                    Text(utilityName,
+                        style: bgColor == Colors.white
+                            ? AppFonts.selectedFont
+                            : AppFonts.normalFont),
                   ],
                 ))),
         const SizedBox(height: 8),
