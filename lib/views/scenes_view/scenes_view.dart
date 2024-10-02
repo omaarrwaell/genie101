@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:genie101/constants/app_fonts.dart';
 import 'package:genie101/views/scenes_view/scenes_view_controller.dart';
 import 'package:genie101/widgets/scene_widgets/conditioner_body.dart';
+import 'package:genie101/widgets/scene_widgets/lamp_body.dart';
 import 'package:genie101/widgets/scene_widgets/utility_card.dart';
 import 'package:get/get.dart';
 import '../../constants/app_colors.dart';
@@ -10,7 +11,7 @@ import '../../widgets/scene_widgets/fan_body.dart';
 class ScenesView extends StatelessWidget {
   double? screenHeigth;
   double? screenWidth;
-  final _utilitiesBody = [FanBody(), ConditionerBody()];
+  final _utilitiesBody = [FanBody(), ConditionerBody(), LampBody()];
   final ScenesViewController _scenesViewController =
       Get.put(ScenesViewController());
   ScenesView({super.key});
@@ -49,7 +50,7 @@ class ScenesView extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(top: 20),
             height: screenHeigth! < 800
-                ? screenHeigth! * 0.25
+                ? screenHeigth! * 0.18
                 : screenHeigth! * 0.15,
             width: screenWidth,
             child: ListView.builder(

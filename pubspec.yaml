@@ -24,6 +24,7 @@ dependencies:
   device_preview: ^1.2.0
   material_symbols_icons: ^4.2785.1
   interactive_slider: ^0.4.0
+  flutter_colorpicker: ^1.1.0
 
 
 dev_dependencies:
@@ -46,6 +47,10 @@ flutter:
 
   assets:
     - assets/images/
-
+  
+  fonts:
+    - family:  CustomIcons
+      fonts:
+       - asset: assets/fonts/CustomIcons.ttf
 
 

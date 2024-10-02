@@ -46,8 +46,9 @@ class ConditionerBody extends StatelessWidget {
           ]),
         ),
         Container(
-          height: 250,
-          width: 250,
+          height:
+              screenHeigth! >= 800 ? screenHeigth! * 0.3 : screenHeigth! * 0.32,
+          width: screenWidth! * 0.69,
           decoration: BoxDecoration(
               color: AppColors.defaultBgColor,
               borderRadius: BorderRadius.circular(200)),

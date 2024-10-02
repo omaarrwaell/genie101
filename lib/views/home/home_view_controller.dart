@@ -4,7 +4,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 class HomeViewController extends GetxController {
   Rx<Icon> selectedIcon = const Icon(Icons.abc).obs;
-  Rx<Icon> selectedTriggerIcon = const Icon(Icons.ac_unit_outlined).obs;
+  Rx<IconData> selectedTriggerIcon = Icons.ac_unit_outlined.obs;
   List<String> names = ["Morning", "Night", "Music", "Movie", "Leaving"];
   List<Icon> icons = const [
     Icon(
@@ -33,32 +33,12 @@ class HomeViewController extends GetxController {
       size: 50,
     )
   ];
-  List<Icon> triggerIcons = const [
-    Icon(
-      Icons.thermostat_outlined,
-      color: Color.fromARGB(255, 218, 209, 209),
-      size: 30,
-    ),
-    Icon(
-      Icons.air_outlined,
-      color: Color.fromARGB(255, 218, 209, 209),
-      size: 30,
-    ),
-    Icon(
-      Icons.cases_outlined,
-      color: Color.fromARGB(255, 218, 209, 209),
-      size: 30,
-    ),
-    Icon(
-      Icons.tv_outlined,
-      color: Color.fromARGB(255, 218, 209, 209),
-      size: 30,
-    ),
-    Icon(
-      Icons.tv_off_outlined,
-      color: Color.fromARGB(255, 218, 209, 209),
-      size: 30,
-    )
+  List<IconData> triggerIcons = const [
+    Icons.thermostat_outlined,
+    Icons.air_outlined,
+    Icons.cases_outlined,
+    Icons.tv_outlined,
+    Icons.tv_off_outlined,
   ];
   List<String> rooms = [
     "Garden",

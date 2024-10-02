@@ -5,19 +5,20 @@ import 'package:get/get.dart';
 class ScenesViewController extends GetxController {
   RxInt currentIndex = 0.obs;
   RxInt acTemp = 19.obs;
+  Rx<Color> selectedColor = Colors.transparent.obs;
   List<String> utilities = [
     'Fan',
     "Conditioner",
-    "Speakers",
     "Light",
     'Television',
+    "Speakers",
   ];
   List<IconData> utilityIcons = const [
     Symbols.mode_fan,
     Symbols.ac_unit,
+    Symbols.lightbulb,
     Symbols.tv,
     Symbols.speaker,
-    Symbols.lightbulb,
   ];
 
   void changeIndex(int index) {
@@ -26,5 +27,9 @@ class ScenesViewController extends GetxController {
 
   void monitorAc(int temp) {
     acTemp(temp);
+  }
+
+  void monitorColor(Color color) {
+    selectedColor(color);
   }
 }

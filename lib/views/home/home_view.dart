@@ -142,8 +142,17 @@ class HomeView extends StatelessWidget {
                                       return Row(
                                         children: [
                                           Obx(() => SceneTrigger(
-                                              sceneIcon: _homeViewController
-                                                  .triggerIcons[index],
+                                              sceneIcon: Icon(
+                                                _homeViewController
+                                                    .triggerIcons[index],
+                                                color: _homeViewController
+                                                            .selectedTriggerIcon() ==
+                                                        _homeViewController
+                                                            .triggerIcons[index]
+                                                    ? Colors.black
+                                                    : const Color.fromARGB(
+                                                        255, 218, 209, 209),
+                                              ),
                                               bgColor: _homeViewController
                                                           .selectedTriggerIcon() ==
                                                       _homeViewController
