@@ -47,7 +47,6 @@ class NavigationView extends StatelessWidget {
                         style: TextStyle(color: Colors.white)),
                   ),
 
-                  /// Search
                   SalomonBottomBarItem(
                     activeIcon: const Icon(
                       Icons.add_circle_sharp,
@@ -58,7 +57,7 @@ class NavigationView extends StatelessWidget {
                       color: Color.fromARGB(255, 85, 84, 84),
                     ),
                     title: const Text(
-                      "Profile",
+                      "Scenes",
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

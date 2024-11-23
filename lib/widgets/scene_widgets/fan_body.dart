@@ -88,6 +88,7 @@ class FanBody extends StatelessWidget {
         InkWell(
           splashColor: Colors.transparent,
           borderRadius: BorderRadius.circular(10),
+          onTap: () async {},
           child: Container(
               height: 50,
               width: screenWidth! * 0.88,

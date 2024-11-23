@@ -45,7 +45,8 @@ class HomeViewController extends GetxController {
     "Living Room",
     "Bed Room",
     "Kitchen",
-    "Bathroom"
+    "Bathroom",
+    ""
   ];
   List<String> roomImages = [
     "assets/images/garden.jpeg",
@@ -53,5 +54,6 @@ class HomeViewController extends GetxController {
     "assets/images/bedroom.jpeg",
     "assets/images/kitchen.jpeg",
     "assets/images/bathroom.jpeg",
+    ""
   ];
 }

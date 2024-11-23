@@ -11,9 +11,9 @@ import '../../widgets/scene_widgets/fan_body.dart';
 class ScenesView extends StatelessWidget {
   double? screenHeigth;
   double? screenWidth;
-  final _utilitiesBody = [FanBody(), ConditionerBody(), LampBody()];
   final ScenesViewController _scenesViewController =
       Get.put(ScenesViewController());
+  final _utilitiesBody = [FanBody(), ConditionerBody(), LampBody()];
   ScenesView({super.key});
   @override
   Widget build(BuildContext context) {
@@ -113,4 +113,10 @@ class ScenesView extends StatelessWidget {
       ),
     );
   }
+
+  void toggleAc() {
+    _scenesViewController.fireAc();
+  }
+
+  void onTap() {}
 }

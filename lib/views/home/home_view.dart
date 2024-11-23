@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:genie101/constants/app_fonts.dart';
+import 'package:genie101/views/add_room_view/add_room_view.dart';
 import 'package:genie101/views/home/home_view_controller.dart';
 import 'package:genie101/views/scenes_view/scenes_view.dart';
 import 'package:genie101/widgets/home_widgets/scene_container.dart';
@@ -79,13 +80,16 @@ class HomeView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(30)),
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: 5,
+                    itemCount: 6,
                     physics: const ScrollPhysics(),
                     padding: const EdgeInsets.all(30),
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () => Get.to(() => ScenesView(),
-                            transition: Transition.rightToLeft),
+                        onTap: _homeViewController.roomImages[index] == ""
+                            ? () => Get.to(() => const AddRoomView(),
+                                transition: Transition.rightToLeft)
+                            : () => Get.to(() => ScenesView(),
+                                transition: Transition.rightToLeft),
                         child: SceneContainer(
                           screenWidth: screenWidth,
                           bgImage: _homeViewController.roomImages[index],
@@ -180,7 +184,7 @@ class HomeView extends StatelessWidget {
                         ),
                       );
                     },
-                  )))
+                  ))),
         ],
       ),
     );
