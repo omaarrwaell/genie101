@@ -96,7 +96,7 @@ class ConditionerBody extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.colorTexture,
                       borderRadius: BorderRadius.circular(10)),
-                  child: Obx(() => Get.find<ScenesViewController>().isOn()
+                  child: Obx(() => Get.find<ScenesViewController>().isAcOn()
                       ? Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -108,7 +108,7 @@ class ConditionerBody extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              "Turn Off",
+                              "Turn off",
                               style: GoogleFonts.poppins(
                                   letterSpacing: 1,
                                   wordSpacing: 1,
@@ -129,7 +129,7 @@ class ConditionerBody extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              "Turn On",
+                              "Turn on",
                               style: GoogleFonts.poppins(
                                   letterSpacing: 1,
                                   wordSpacing: 1,

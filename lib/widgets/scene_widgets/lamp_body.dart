@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:interactive_slider/interactive_slider.dart';
 import '../../Icons/custom_icons.dart';
+import '../../constants/app_colors.dart';
 
 class LampBody extends StatelessWidget {
   double? screenWidth;
@@ -22,7 +23,7 @@ class LampBody extends StatelessWidget {
         ColorPicker(
           pickerAreaHeightPercent: screenHeigth! < 800 ? 0.7 : 1,
           colorPickerWidth: screenWidth! * 0.6,
-          pickerColor: Colors.red,
+          pickerColor: Get.find<ScenesViewController>().selectedColor(),
           displayThumbColor: false,
           onColorChanged: (color) =>
               Get.find<ScenesViewController>().monitorColor(color),
@@ -51,36 +52,98 @@ class LampBody extends StatelessWidget {
             max: 32,
           ),
         ),
-        InkWell(
-          splashColor: Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          child: Container(
-              height: 50,
-              width: screenWidth! * 0.88,
-              decoration: BoxDecoration(
-                  color: const Color(0xff615FEC),
-                  borderRadius: BorderRadius.circular(10)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    CupertinoIcons.power,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Turn Off",
-                    style: GoogleFonts.poppins(
-                        letterSpacing: 1,
-                        wordSpacing: 1,
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              )),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () async =>
+                  await Get.find<ScenesViewController>().toggleHue(),
+              splashColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                  height: 50,
+                  width: screenWidth! * 0.6,
+                  decoration: BoxDecoration(
+                      color: AppColors.colorTexture,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Obx(() => Get.find<ScenesViewController>().isHueOn()
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              CupertinoIcons.power,
+                              color: Colors.red,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Turn off",
+                              style: GoogleFonts.poppins(
+                                  letterSpacing: 1,
+                                  wordSpacing: 1,
+                                  color: Colors.red,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              CupertinoIcons.power,
+                              color: Colors.green,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "Turn on",
+                              style: GoogleFonts.poppins(
+                                  letterSpacing: 1,
+                                  wordSpacing: 1,
+                                  color: Colors.green,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500),
+                            ),
+                          ],
+                        ))),
+            ),
+            InkWell(
+              onTap: () async =>
+                  await Get.find<ScenesViewController>().fireHue(),
+              splashColor: Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                  height: 50,
+                  width: screenWidth! * 0.35,
+                  decoration: BoxDecoration(
+                      color: AppColors.colorTexture,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.drag_indicator_outlined,
+                        color: Colors.blue,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        "Monitor",
+                        style: GoogleFonts.poppins(
+                            letterSpacing: 1,
+                            wordSpacing: 1,
+                            color: Colors.blue,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  )),
+            ),
+          ],
         ),
       ],
     );

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:genie101/views/navigation_view/navigation_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(const MyApp());
-// void main() => runApp(
-//       DevicePreview(
-//         builder: (context) => MyApp(), // Wrap your app
-//       ),
-//     );
+void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,6 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      onReady: () => FlutterNativeSplash.remove(),
+      defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       home: NavigationView(),
       theme: ThemeData(

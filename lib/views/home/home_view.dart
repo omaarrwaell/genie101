@@ -40,7 +40,7 @@ class HomeView extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.only(left: 0),
                   child: Image.asset(
-                    "assets/images/genie-Photoroom.png",
+                    "assets/images/genie-bg.png",
                   ),
                 ),
               )

@@ -25,6 +25,8 @@ dependencies:
   material_symbols_icons: ^4.2785.1
   interactive_slider: ^0.4.0
   flutter_colorpicker: ^1.1.0
+  flutter_native_splash: ^2.4.3    
+
 
 
 dev_dependencies:
@@ -36,14 +38,12 @@ dev_dependencies:
 
 
 
-# The following section is specific to Flutter packages.
 flutter:
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
 
   assets:
     - assets/images/
@@ -54,3 +54,17 @@ flutter:
        - asset: assets/fonts/CustomIcons.ttf
 
 
+
+flutter_native_splash:
+  image: assets/images/genie-bg.png
+  background_image: assets/images/genie-bg.png
+  branding: assets/images/fan.png
+  android: true
+  ios: true
+
+  android_12:
+    image: assets/images/genie-bg.png
+    color: "#1b252d"
+    icon_background_color: "#1b252d"
+    image_dark: assets/images/genie-bg.png
+    icon_background_color_dark: "#1b252d"

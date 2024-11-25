@@ -28,15 +28,20 @@ class ScenesViewController extends GetxController {
   ];
   RxList<Device> devices = <Device>[].obs;
   Rx<Device> conditioner = Device.onInit({}).obs;
-  Rx<bool> isOn = false.obs;
+  Rx<Device> hue = Device.onInit({}).obs;
+  Rx<bool> isAcOn = false.obs;
+  Rx<bool> isHueOn = false.obs;
   @override
   void onInit() async {
     var res = await _deviceProvider.getDevices();
     devices.value = res.body!;
-    print(devices());
     conditioner.value = devices().firstWhere((d) => d.name == 'Conditioner');
+    hue.value = devices().firstWhere((d) => d.name == 'Hue');
     acTemp(conditioner().status!["temperature"]);
-    isOn(conditioner().status!["state"] == "on");
+    isAcOn(conditioner().status!["state"] == "on");
+    selectedColor(
+        Color(int.parse(hue().status!["color"].replaceFirst('#', '0xff'))));
+    isHueOn(hue().status!["state"] == "on");
     super.onInit();
   }
 
@@ -63,7 +68,7 @@ class ScenesViewController extends GetxController {
       if (response.isOk) {
         conditioner.value.status!["state"] =
             conditioner().status!["state"] == "on" ? "off" : "on";
-        isOn(conditioner().status!["state"] == "on");
+        isAcOn(conditioner().status!["state"] == "on");
         Get.snackbar("Success", response.body!.message);
       }
     } catch (_) {}
@@ -76,6 +81,38 @@ class ScenesViewController extends GetxController {
               command: "update",
               payload: {"state": "on", "temperature": acTemp.value}).toJson(),
           conditioner().id.toString());
+      if (response.isOk) {
+        Get.snackbar("Success", response.body!.message);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> toggleHue() async {
+    try {
+      var response = await _deviceProvider.controlDevice(
+        CommandDto(command: "toggle", payload: {
+          "state": hue().status!["state"] == "on" ? "off" : "on"
+        }).toJson(),
+        hue().id.toString(),
+      );
+      if (response.isOk) {
+        hue.value.status!["state"] =
+            hue().status!["state"] == "on" ? "off" : "on";
+        isHueOn(hue().status!["state"] == "on");
+        Get.snackbar("Success", response.body!.message);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> fireHue() async {
+    try {
+      var response = await _deviceProvider.controlDevice(
+        CommandDto(command: "update", payload: {
+          "state": hue().status!["state"],
+          "color": "#${selectedColor.value.value.toRadixString(16)}"
+        }).toJson(),
+        hue().id.toString(),
+      );
       if (response.isOk) {
         Get.snackbar("Success", response.body!.message);
       }
